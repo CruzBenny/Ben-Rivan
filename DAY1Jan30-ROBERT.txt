@@ -30,7 +30,7 @@ config t
 	 ip add 10._.100.2 255.255.255.0
 	 description VOICEVLAN
 
-!!!DAPAT 7 UNDER SCORE ANG NA EDIT MO  ( LINE 34 to 67 PASTE TO COREBABA SWITCH )
+!!!DAPAT 7 UNDER SCORE ANG NA EDIT MO  ( LINE 34 to 68 PASTE TO COREBABA SWITCH )
 !@@@LeafSwitchONLY
 config t
    hostname COREbaba_
@@ -140,12 +140,15 @@ Int Fa 0/7
  switchoprt access vlan 1
  end
 
+!IP CAMERAS NEED MAC ADDRESS RESERVATION FOR FIXED IP  (LINE 144 to 151 PASTE TO COREBABA)
+config t
+ip routing
 ip dhcp pool CAMERA6
 host 10._.50.6 255.255.255.0
-client-identifier aaaa.bbbb.cccc
+client-identifier ____.____.____
 ip dhcp pool CAMERA8
 host 10._.50.8 255.255.255.0
-client-identifier cccc.dddd.aaaa
+client-identifier ____.____.____
 
 !!cisco unified call manager Express command
 !@@@CUCM-M
