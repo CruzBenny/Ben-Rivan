@@ -99,7 +99,7 @@ ip dhcp pool VOICEVLAN
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
-( LINE 103 to 139 PASTE TO COREBABA SWITCH )
+( LINE 103 to 141 PASTE TO COREBABA SWITCH )
 config t
 vlan 10
    name WIFIVLAN
@@ -131,10 +131,12 @@ Int Fa 0/3
 Int Fa 0/5
   switchport mode access  
   switchport voice vlan 100
+  mls qos trust device cisco-phone 
   switchport access vlan 1
 Int Fa 0/7
   switchport mode access
   switchport voice vlan 100 
+  mls qos trust device cisco-phone 
  switchoprt access vlan 1
  end
 
