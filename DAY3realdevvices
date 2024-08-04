@@ -9,6 +9,33 @@ ping 10.m.m.4                check FIberUplinkSwitch= sh run int gi 0/1
 ping  10.m.m.1               Edge: sh ip int brief
                              NO routing Configured: CCNA = Job
 ping  200.0.0.m              NO routing Configured: CCNA = Job
+ping 200.0.0.k               KLASSMATE  DID NOT CONFIGURE ROUTING
+ping 10.k.k.1                Klassmate did not configure switch routing
+ping 10.k.k.4                Klassmate did not configure switch routing
+ping 10.k.100.8              Klassmate did not configure routing on CUCM
+ping 10.k.1.10               Klassmate did not configure routing on Windows Server
+
+
+TASK1: STATIC ROUTING: Very Cheap, China is King. Home/End Devices.
+VS DYNAMIC ROUTING.
+Static Routing @CUCM:
+config t
+ip route 0.0.0.0  0.0.0.0  10.m.100.4  1
+
+Static Routing @COREbaba:
+config t
+ip route 0.0.0.0  0.0.0.0  10.m.m.1  1
+
+@EDGE STATIC ROUTING REVIEW
+config t
+ip route 10.m.0.0 255.255.0.0 10.m.m.4 1
+ip route 10.11.0.0 255.255.0.0 200.0.0.11 1
+!ip route 10.12.0.0 255.255.0.0 200.0.0.12 1
+ip route 10.21.0.0 255.255.0.0 200.0.0.21 1
+ip route 10.22.0.0 255.255.0.0 200.0.0.22 1
+ip route 10.31.0.0. 255.255.0.0 200.0.0.31 1
+ip route 10.32.0.0 255.255.0.0 200.0.0.32 1
+ip route 10.41.0.0 255.255.0.0 200.0.0.41 1
 
 CONFIGURING OSPF AND EIGRP IN REAL WORLD DEVICES, NOT VIRTUAL
 
