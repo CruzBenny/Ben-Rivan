@@ -1,3 +1,15 @@
+TROUBLESHOOTING AND DIAGNOSTIC FOR NETWORK ENGINEERS:
+EXPERIENCE >>> CERTIFIED, lethal = XP + Certified + Englishero = 3threesome.
+ping test: via windows Cmd:    if Fails
+ping 10.m.1.10               cable unplugged, wrong IP, Duplicate: 169.254.x.x
+ping 10.m.1.4                no Vlan, wrong Vlan, sw: sh vlan brief
+ping 10.m.100.4              type "IP routing" on SW, 
+ping 10.m.m.4                check FIberUplinkSwitch= sh run int gi 0/1
+                             "no switchport"
+ping  10.m.m.1               Edge: sh ip int brief
+                             NO routing Configured: CCNA = Job
+ping  200.0.0.m              NO routing Configured: CCNA = Job
+
 CONFIGURING OSPF AND EIGRP IN REAL WORLD DEVICES, NOT VIRTUAL
 
 task4: CONFIGURING eigrp FOR ALL switches,cms
