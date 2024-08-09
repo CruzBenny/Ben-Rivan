@@ -14,12 +14,76 @@ Task1: 5 mins answers:
 6. ff00:0000:0000:beef:a00a:0aa0:0000:0000/8 = 
 	FF00:0:0:BEEF:A00A:AA0:: /8
 
+IPV6 SUBNETTING:
+fec0:aabb:fafa:dada::/64 subnet to 22 offices/subnets:
+Con:  22 -> 5bits
+Add: /64 + /5 = /69
+iChamba:
+	8  4  2   1    8  4  2   1     8  4  2   1    8  4  2   1 
+1st     0  0  0   0    0   : 0000:
+2nd     0  0  0   0    1     :0800:
+3rd     0  0  0   1    0     :1000:
+4th     0  0  0   1    1     :1800:
+5th     0  0  1   0    0     :2000:
+6th     0  0  1   0    1     :2800:
+7th     0  0  1   1    0     :3000
+5th     0  0  1   1    1     :3800   
+
+EX.2: SUBNET cafe:cafe:cafe:mm::/64 to 450 offices:
+C: 450 is 9bits
+A: /64+ /9 = /73
+iChamba:
+	8  4  2   1    8  4  2   1     8  4  2   1    8  4  2   1 
+1st     0  0  0   0    0  0  0   0     0  :0000:
+2nd     0  0  0   0    0  0  0   0     1  :0080:
+3rd     0  0  0   0    0  0  0   1     0  :0100:
+4th     0  0  0   0    0  0  0   1     1  :0180:   
+5th     0  0  0   0    0  0  1   0     0  :0200:
+6th     0  0  0   0    0  0  1   0     1  :0280:
+config t
+int lo 1
+ ipv6 add cafe:cafe:cafe:1212:0000::1212/73
+int lo 2
+ ipv6 add cafe:cafe:cafe:1212:0080::1212/73
+int lo 3
+ ipv6 add cafe:cafe:cafe:1212:0100::1212/73
+int lo 4
+ ipv6 add cafe:cafe:cafe:1212:0180::1212/73
+int lo 5
+ ipv6 add cafe:cafe:cafe:1212:0200::1212/73
+int lo 6
+ ipv6 add cafe:cafe:cafe:1212:0280::1212/73
+ do sh ipv6 int brief
+Configure IPV6 OSPF:
+@EDGE:
+config t
+ipv6 router ospf 6
+router-id 1.1.1.1
+int gi 0/0/0
+ ipv6 ospf 6 area 0
+int gi 0/0/1
+ ipv6 ospf 6 area 0
+int lo 1
+ ipv6 ospf 6 area 0
+int lo 2
+ ipv6 ospf 6 area 0
+int lo 3
+ ipv6 ospf 6 area 0
+int lo 4
+ ipv6 ospf 6 area 0
+int lo 5
+ ipv6 ospf 6 area 0
+int lo 6
+ ipv6 ospf 6 area 0
+ do sh ipv6 ospf neig
+
+
 TASK2: CONFIGURING IPV6 ON CISCO DEVICES:
 method1: Ipv6 autoconfig/autoBwisit
-@p1
+@EDGE:
 config t
 ipv6 unicast-routing
-int Giga 2
+int Giga 0/0/0
  ipv6 enable
  Ipv6 address autoconfig
 
@@ -32,12 +96,12 @@ int e1/0
 
 method2: EUI-64 method: using the MAc Address
 as host.
-@P1
+@edge
 config t
 ipv6 unicast-routing
-int giga 2
+int giga 0/0/0
  no shutdown
- ipv6 add baba:bebe:fafa:fafe::/64 EUI-64
+ ipv6 add baba:bebe:fafa:1212::/64 EUI-64
  do sh ipv6 int brief
 end
 
@@ -51,11 +115,11 @@ int e1/0
 end
 
 Method3: STatic IPv6 address manual: IKAW LAHAT 
-@p1
+@EDGE
 config t
 ipv6 unicast-routing
-int giga 2
- ipv6 add BEBE:FACE:ABCD:BABA::EEEE/64
+int giga 0/0/1
+ ipv6 add BEBE:FACE:ABCD:BABA::1212/64
  do sh ipv6 int brief
 end
 
