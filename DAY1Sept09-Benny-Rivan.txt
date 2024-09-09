@@ -1,6 +1,6 @@
 !@@@CORE SWITCH SA TAAS
 config t
-   hostname COREtaas__
+   hostname COREtaasM41
    enable secret pass
    service password-encryption
    no logging console
@@ -15,25 +15,25 @@ config t
       exec-timeout 0 0
    Int Vlan 1
      no shutdown
-	 ip add 10._.1.2 255.255.255.0
+	 ip add 10.41.1.2 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10._.10.2 255.255.255.0
+	 ip add 10.41.10.2 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10._.50.2 255.255.255.0
+	 ip add 10.41.50.2 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10._.100.2 255.255.255.0
+	 ip add 10.41.100.2 255.255.255.0
 	 description VOICEVLAN
 
 !!!DAPAT 7 UNDER SCORE ANG NA EDIT MO  ( LINE 34 to 68 PASTE TO COREBABA SWITCH )
 !@@@LeafSwitchONLY
 config t
-   hostname COREbaba_
+   hostname COREbaba41
    enable secret pass
    service password-encryption
    no logging console
@@ -49,53 +49,53 @@ config t
    Int Gi 0/1
      no shutdown
 	  no switchport
-	  ip add 10._._.4 255.255.255.0
+	  ip add 10.41.41.4 255.255.255.0
    Int Vlan 1
      no shutdown
-	 ip add 10._.1.4 255.255.255.0
+	 ip add 10.41.1.4 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10._.10.4 255.255.255.0
+	 ip add 10.41.10.4 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10._.50.4 255.255.255.0
+	 ip add 10.41.50.4 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10._.100.4 255.255.255.0
+	 ip add 10.41.100.4 255.255.255.0
 	 description VOICEVLAN
 	 
 !DHCP: DYNAMIC HOST CONFIGURATION PROTOCOL
 !!!DAPAT 21 UNDER SCORE ANG NA EDIT MO  ( LINE 72 to 99 PASTE TO COREBABA SWITCH )
 !@@@LEAF SWITCH
 config t
-ip dhcp Excluded-add 10._.1.1 10._.1.100
-ip dhcp Excluded-add 10._.10.1 10._.10.100
-ip dhcp Excluded-add 10._.50.1 10._.50.100
-ip dhcp Excluded-add 10._.100.1 10._.100.100
+ip dhcp Excluded-add 10.41.1.1 10.41.1.100
+ip dhcp Excluded-add 10.41.10.1 10.41.10.100
+ip dhcp Excluded-add 10.41.50.1 10.41.50.100
+ip dhcp Excluded-add 10.41.100.1 10.41.100.100
 ip dhcp pool MGMTDATA
-   network 10._.1.0 255.255.255.0
-   default-router 10._.1.4
+   network 10.41.1.0 255.255.255.0
+   default-router 10.41.1.4
    domain-name MGMTDATA.COM
-   dns-server 10._.1.10
+   dns-server 10.41.1.10
 ip dhcp pool WIFIDATA
-   network 10._.10.0 255.255.255.0
-   default-router 10._.10.4
+   network 10.41.10.0 255.255.255.0
+   default-router 10.41.10.4
    domain-name WIFIDATA.COM
-   dns-server 10._.1.10
+   dns-server 10.41.1.10
 ip dhcp pool IPCCTV
-   network 10._.50.0 255.255.255.0
-   default-router 10._.50.4
+   network 10.41.50.0 255.255.255.0
+   default-router 10.41.50.4
    domain-name IPCCTV.COM
-   dns-server 10._.1.10
+   dns-server 10.41.1.10
 ip dhcp pool VOICEVLAN
-   network 10._.100.0 255.255.255.0
-   default-router 10._.100.4
+   network 10.41.100.0 255.255.255.0
+   default-router 10.41.100.4
    domain-name VOICEVLAN.COM
-   dns-server 10._.1.10
-   option 150 ip 10._.100.8   
+   dns-server 10.41.1.10
+   option 150 ip 10.41.100.8   
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
@@ -137,23 +137,23 @@ Int Fa 0/7
   switchport mode access
   switchport voice vlan 100 
   mls qos trust device cisco-phone 
- switchoprt access vlan 1
+ switchport access vlan 1
  end
 
 !IP CAMERAS NEED MAC ADDRESS RESERVATION FOR FIXED IP  (LINE 144 to 151 PASTE TO COREBABA)
 config t
 ip routing
 ip dhcp pool CAMERA6
-host 10._.50.6 255.255.255.0
-client-identifier ____.____.____
+host 10.41.50.6 255.255.255.0
+client-identifier  001a.0709.4929
 ip dhcp pool CAMERA8
-host 10._.50.8 255.255.255.0
-client-identifier ____.____.____
+host 10.41.50.8 255.255.255.0
+client-identifier 001a.0706.c2fe
 
 !!cisco unified call manager Express command
 !@@@CUCM-M
 config t
-   hostname CUCM-_
+   hostname CUCM-41
    enable secret pass
    service password-encryption
    no logging console
@@ -168,22 +168,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10._.100.8 255.255.255.0 
+	 ip add 10.41.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern _00
+   destination-pattern 4100
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern _01
+   destination-pattern 4101
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern _02
+   destination-pattern 4102
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern _03
+   destination-pattern 4103
    port 0/0/3
 end
 
@@ -195,35 +195,35 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10.12.100.8 port 2000
+   ip source-address 10.41.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number 1211
+  number 4111
 ephone-dn 2
-  number 1222
+  number 4122
 ephone-dn 3
-  number 1233
+  number 4133
 ephone-dn 4
-  number 1244
+  number 4144
 ephone-dn 5
-  number 1255
+  number 4155
 ephone-dn 6
-  number 1266
+  number 4166
 ephone-dn 7
-  number 1277
+  number 4177
 ephone-dn 8
-  number 1288
+  number 4188
  ephone-dn 9
-   number 1290
+   number 4190
 ephone-dn 10
  number 1291
 Ephone 1
-  Mac-address ____.____.____
+  Mac-address b4e9.b0b1.715b
   type 8945
   button 1:8 2:7 3:6 4:5
   restart
 Ephone 2
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.0ce9
   type 8945
   button 1:4 2:3 3:2 4:1
   restart  
@@ -256,10 +256,10 @@ configure terminal
  destination-pattern 11..
  session target ipv4:10.11.100.8
  codec g711ULAW
- ! dial-peer voice 12 Voip
- ! destination-pattern 12..
- ! session target ipv4:10.12.100.8
- ! codec g711ULAW
+  dial-peer voice 12 Voip
+  destination-pattern 12..
+  session target ipv4:10.12.100.8
+  codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
@@ -276,10 +276,10 @@ dial-peer voice 32 Voip
  destination-pattern 32..
  session target ipv4:10.32.100.8
  codec g711ULAW
-dial-peer voice 41 Voip
- destination-pattern 41..
- session target ipv4:10.41.100.8
- codec g711ULAW
+! dial-peer voice 41 Voip
+! destination-pattern 41..
+! session target ipv4:10.41.100.8
+! codec g711ULAW
 dial-peer voice 42 Voip
  destination-pattern 42..
  session target ipv4:10.42.100.8
@@ -320,7 +320,7 @@ dial-peer voice 82 Voip
 @@@@@@
 !@@@EDGE ROUTE CONFIG
 config t
-   hostname EDGE-_
+   hostname EDGE-41
    enable secret pass
    service password-encryption
    no logging console
@@ -335,15 +335,15 @@ config t
       exec-timeout 0 0
    Int Gi 0/0/0
      description INSIDE
-     ip add 10.m.m.1 255.255.255.0
+     ip add 10.41.41.1 255.255.255.0
 	 no shutdown
    Int Gi 0/0/1
      description OUTSIDE
-	 ip add 200.0.0.m 255.255.255.0
+	 ip add 200.0.0.41 255.255.255.0
 	 no shutdown
    Int Loopback 0
      description VIRTUALIP
-	 ip add m.0.0.1 255.255.255.255
+	 ip add 41.0.0.1 255.255.255.255
  end
 
  !!!STATIC ROUTING FOR MININUM WAGERS: 645php/day
@@ -351,12 +351,12 @@ config t
 conf t
  ip routing 
  ip route 10.11.0.0 255.255.0.0 200.0.0.11
-! ip route 10.12.0.0 255.255.0.0 200.0.0.12
+ ip route 10.12.0.0 255.255.0.0 200.0.0.12
  ip route 10.21.0.0 255.255.0.0 200.0.0.21
  ip route 10.22.0.0 255.255.0.0 200.0.0.22
  ip route 10.31.0.0 255.255.0.0 200.0.0.31
  ip route 10.32.0.0 255.255.0.0 200.0.0.32
- ip route 10.41.0.0 255.255.0.0 200.0.0.41
+ ! ip route 10.41.0.0 255.255.0.0 200.0.0.41
  ip route 10.42.0.0 255.255.0.0 200.0.0.42
  ip route 10.51.0.0 255.255.0.0 200.0.0.51
  ip route 10.52.0.0 255.255.0.0 200.0.0.52
@@ -366,7 +366,7 @@ conf t
  ip route 10.72.0.0 255.255.0.0 200.0.0.72
  ip route 10.81.0.0 255.255.0.0 200.0.0.81
  ip route 10.82.0.0 255.255.0.0 200.0.0.82
- ip route 10._.0.0 255.255.0.0 10._._.4
+ ip route 10.41.0.0 255.255.0.0 10.41.41.4
  end
  
 *********************************************
@@ -375,20 +375,20 @@ Layer three/3 switch ROUTING = 300k up!!!
 !SI SWITCH ASA/DIKIT KAY EDGE PARA MAKALABAS
 conf t 
 ip routing
-ip route 0.0.0.0 0.0.0.0 10._._.1
+ip route 0.0.0.0 0.0.0.0 10.41.41.1
 end
 
 @CUCM:DEFAULT ROUTING( 0.0.0.0 0.0.0.0) FOR CUCM:
 !SI CUCM ASA/DIKIT KAY SWITCH VLAN 100 PARA MAKALABAS
 conf t
 ip routing
-ip route 0.0.0.0 0.0.0.0 10._.100.4
+ip route 0.0.0.0 0.0.0.0 10.41.100.4
 end
 
 !How to Static Route windows Server:
 cmd
-route  add   10.0.0.0   mask   255.0.0.0    10._.1.4
-route  add  200.0.0.0   mask  255.255.255.0   10._.1.4
+route  add   10.0.0.0   mask   255.0.0.0    10.41.1.4
+route  add  200.0.0.0   mask  255.255.255.0   10.41.1.4
 
 ********************************************
 
