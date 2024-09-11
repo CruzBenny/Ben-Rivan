@@ -167,8 +167,14 @@ router eigrp 100
  network 10.1.4.8 0.0.0.3
  network 10.1.4.4 0.0.0.3
  end
+!HOW TO CHECK IF EIGRP IS WORKING PROPERLY
+show ip protocols
+show ip EIGRP neighbors
+show ip EIGRP topology
+show ip EIGRP traffic
+show ip route eigrp 
 
-!!Multi Area OSPF FOR nETWOR eNGINEERS:
+!!Multi Area OSPF FOR nETWORk eNGINEERS:
 OSPF NETWORK:
 R4:
 config t
@@ -213,9 +219,23 @@ sh ip protocols
 sh ip ospf neighbor
 sh ip ospf database
 
+!Declaring link between R3 and R4 as P2P:
+R3:
+conf t
+interface e1/2
+ ip ospf network point-to-point
+ do sh ip ospf int e1/2
+
+R4:
+conf t
+interface e1/2
+ ip ospf network point-to-point
+ do sh ip ospf int e1/2
+
 Task3: Eigrp and Ospf Redistribution:
 R4: sikat: Eigrp and OSPF world:
-config T
+
+config t
 router eigrp 100
 redistribute ospf 1 metric 10000 100 255 1 1500
  exit
