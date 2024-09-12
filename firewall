@@ -1,0 +1,10 @@
+conf t
+no ip access-list extended blueteam4
+ip access-list extended blueteam4
+ permit tcp any host www.web8.com eq 23 log
+ permit tcp any host www.web8.com eq 23 log
+ permit tcp any host www.web8.com eq 23 log
+ permit tcp any host www.web8.com eq 23 log
+int gi3
+ip access-group blueteam4 in
+do sh ip access-list blueteam4
