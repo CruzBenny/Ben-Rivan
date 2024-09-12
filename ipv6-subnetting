@@ -1,0 +1,39 @@
+int lo 1
+ ipv6 add fec0:fec0:aabb::0000::1/67
+int lo 2
+ ipv6 add fec0:fec0:aabb::2000::1/67
+int lo 3
+ ipv6 add fec0:fec0:aabb::4000::1/67
+int lo 4
+ ipv6 add fec0:fec0:aabb::6000::1/67
+int lo 5
+ ipv6 add fec0:fec0:aabb::8000::1/67
+int lo 6
+ ipv6 add fec0:fec0:aabb::a000::1/67
+ do sh ipv6 int brief
+
+
+
+dual stack
+
+
+conf t
+int lo 1
+ ip add 10.2.0.1 255.254.0.0
+ ipv6 add fec0:fec0:aabb:0000::1/55
+int lo 2
+ ip add 10.4.0.1 255.254.0.0
+ ipv6 add fec0:fec0:aabb:0200::1/55
+int lo 3
+ ip add 10.6.0.1 255.254.0.0
+ ipv6 add fec0:fec0:aabb:0600::1/55
+int lo 4
+ ip add 10.8.0.1 255.254.0.0
+ ipv6 add fec0:fec0:aabb:0800::1/55
+int lo 5
+ ip add 10.10.0.1 255.254.0.0
+ ipv6 add fec0:fec0:aabb:0a00::1/55
+ do sh ipv6 int brief
+
+
+FEC0:FEC0:AABB:DDEE::
