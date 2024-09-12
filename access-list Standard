@@ -23,6 +23,7 @@ deny 68.235.0.0 0.0.255.255
 deny 208.77.20.0 0.0.255.255
 deny 172.67.133.0 0.0.255.255
 permit any
+exit
 int gi0/0/1
   ip access-group NOPORN in
   do ping cisco.com
