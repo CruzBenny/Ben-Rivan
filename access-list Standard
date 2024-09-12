@@ -11,3 +11,20 @@ int Gi 0/0/1
 conf t
 int Gi 0/0/1
   no ip access-group KAMILANG2 in
+
+
+NO PORN
+conf t
+no ip access-list Standard NOPORN
+ip access-list Standard NOPORN
+deny 66.254.0.0 0.0.255.255
+deny 104.21.0.0 0.0.255.255
+deny 68.235.0.0 0.0.255.255
+deny 208.77.20.0 0.0.255.255
+deny 172.67.133.0 0.0.255.255
+permit any
+int gi0/0/1
+  ip access-group NOPORN in
+  do ping cisco.com
+  do ping www.nba.com
+  do ping www.pornhub.com
