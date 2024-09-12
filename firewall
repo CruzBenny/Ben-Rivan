@@ -8,3 +8,16 @@ ip access-list extended blueteam4
 int gi3
 ip access-group blueteam4 in
 do sh ip access-list blueteam4
+
+
+
+conf t
+no ip access-list extended bantayweb1
+ip access-list extended bantayweb1
+ permit tcp any host www.web8.com eq 23 log
+ permit tcp any host www.web8.com eq 22 log
+ permit tcp any host www.web9.com eq 53 log
+ permit tcp any host www.web9.com eq 80 log
+int gi3
+ip access-group bantayweb1 in
+do sh ip access-list bantayweb1
