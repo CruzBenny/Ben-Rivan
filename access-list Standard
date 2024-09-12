@@ -1,0 +1,13 @@
+conf t
+no ip access-list Standard KAMILANG2
+ip access-list Standard KAMILANG2
+  permit 10.k1.0.0 0.0.255.255
+  permit 10.k1.0.0 0.0.255.255
+int Gi 0/0/1
+  ip access-group KAMILANG2 in
+  do sh ip access-list KAMILANG3
+
+!FRIENDS LAHAT
+conf t
+int Gi 0/0/1
+  no ip access-group KAMILANG2 in
