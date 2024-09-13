@@ -58,6 +58,17 @@ int range e1/2-3
  channel-group 3 mode active
  channel-protocol lacp
 
+@A1
+conf t
+int range e0/1-2
+ channel-group 4 mode active
+ channel-protocol lacp
+
+@A2
+conf t
+int range e1/2-3
+ mode desirable
+ channel-protocol pagp
 
 
 
