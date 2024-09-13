@@ -1,6 +1,6 @@
 !@@@CORE SWITCH SA TAAS
 config t
-   hostname COREtaasM41
+   hostname COREtaas41
    enable secret pass
    service password-encryption
    no logging console
