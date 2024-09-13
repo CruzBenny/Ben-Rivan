@@ -1,0 +1,65 @@
+step : Practice all LABS DAILY:
+1. ipv4 and ipv6 subnetting and configuration:
+2. switch LACP using lacp vs pagp
+3. vtp server, vtp transparent.
+
+lab practice:
+conf t
+int range e0/1-2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 1-100
+
+
+config t
+Int Range fa0/10-12
+ shutdown
+ no shutdown
+ switchport trunk Encap Dot1Q
+ switchport mode trunk
+ switchport trunk allowed vlan 1-100 
+ do sh int trunk
+
+
+conf t
+vtp domain ccna
+vtp password rivan
+vtp mode server ; client or transparent
+show vtp status
+
+PAGP and LACP on your exam: D2
+conf t
+int range e1/2-3
+ channel-group 1 mode desirable
+ channel-protocol pagp
+int range e0/0, e0/3
+ channel-group 2 mode active
+ channel-protocol lacp
+int range e0/1-2
+ channel-group 3 mode active
+ channel-protocol lacp
+
+D1
+conf t
+int range e1/2-3
+ channel-group 1 mode desirable
+ channel-protocol lacp
+
+A2
+conf t
+int range e0/0, e0/3
+ channel-group 2 mode desirable
+ channel-protocol pagp
+
+
+D2
+conf t
+int range e1/2-3
+ channel-group 3 mode active
+ channel-protocol lacp
+
+
+
+
+
+
