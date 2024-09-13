@@ -252,11 +252,12 @@ indicator no.2: if you plug a device=30s
 indicator no.3: Kislap every 1/2 seconds
 
 TASK6: HOW TO GET FIRED IMMEDIATELY!
-@baba:
+pang sira @baba @taas:
 config t
 NO spanning-tree vlan 1-999
 end
-@taas:
+
+pang ayos @taas @baba:
 config t
 spanning-tree vlan 1-999
 end
@@ -477,7 +478,7 @@ config t
 hostname PLDTITO
 Track 1 Int gi 0/1 line-protocol
 Int vlan 1
-standby 1 ip 10.__.1.6
+standby 1 ip 10.41.1.6
 standby 1 preempt
 standby 1 Priority 150
 standby 1 Track 1 decrement 60
@@ -495,7 +496,7 @@ COREBABA/GLOBE:
 config t
 hostname GLOBEITO
 Int vlan 1
-standby 1 ip 10.__.1.6
+standby 1 ip 10.41.1.6
 standby 1 preempt
 standby 1 Priority 100
 
@@ -531,13 +532,17 @@ TASK17: Port-Aggregation/Etherchannel:
 LACP:LINK AGGREGATION CONTROL PROTOCOL = ieee worldStandrad
 cisco = PortAggregationProtocl: PaGP
 Combinding Two/More Layer 2 links AS ONE! Unite/UNITY
-@taas/BABA:
+
+
+@taas/BABA: (LALABAS SA EXAM)!!!!!!!!
 config t
 Int Range fa0/10-12
  channel-group 1 mode active
  channel-protocol Lacp
  do sh etherchannel summary
  do sh int po1 | inc BW
+
+
 
 TASK18: HOW TO RETAIN ALL THE INFORMATION:
 run RSThayup: switchingLAB
